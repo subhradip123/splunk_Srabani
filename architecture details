@@ -1,0 +1,37 @@
+Architecture details:
+1. Unversal forwarder: We splunk universal forwarder package. It only has CLI, it does not have any UI. Only task is to forward the data.
+inputs.conf : specify the path to monitor.
+outputs.conf : Forward to which IP.
+
+2. Heavy forwarders:
+props.conf transforms.conf
+a> Parsing:
+This is Subhradip. This is Shiva. This is Sravani.
+
+This is Subhradip. 
+
+This is Shiva. 
+
+This is Sravani.
+
+b> Masking:
+Subhradip has debited from 123456789123.
+
+Subhradip has debited from *********123.
+
+c> FIltering:
+Subhradip logged in from 192.168.12.34.
+Subhradip logged out from 192.168.12.34.
+Srabani logged in from 192.168.12.25.
+Srabani logged out from 192.168.12.25.
+
+
+Subhradip logged in from 192.168.12.34.
+
+Srabani logged in from 192.168.12.25.
+
+3.indexer:
+indexer is the instance where we store the data.
+Index is the folder/directory where we store the data.
+
+4. Search head:
