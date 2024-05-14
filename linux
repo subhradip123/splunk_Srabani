@@ -1,0 +1,35 @@
+linux:
+what is os? types of available? windows server versions
+Main differnce between linux and a windows server? linux flavours
+what is a server.
+what is kernal.
+
+
+linux comands:
+1. ls: list all the files/directory in a directory.
+2. cd: change directory.
+3. rm: remove a file
+4. cat:
+5. mkdir:
+6. cp:
+7. tar: cvfz(compress verbose file zip)  xvfz(extract verbose file zip)
+eg. tar xvfz splunkforwarder-9.2.1-78803f08aabb-Linux-x86_64.tgz
+
+8. ifconfig:
+9. wget:
+10. init:
+11. pwd: present working directory
+12. history:
+13. whoami:
+15. ping:
+16. df:
+17. rmdir:
+18. clear:
+19. exit:
+20. log out:
+21. sudo su:
+
+change file ownership:
+chown -R root:root splunkforwarder
+
+vi editor commands:
