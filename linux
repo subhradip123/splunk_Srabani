@@ -4,32 +4,48 @@ Main differnce between linux and a windows server? linux flavours
 what is a server.
 what is kernal.
 
+file precedence in splunk.
+
 
 linux comands:
 1. ls: list all the files/directory in a directory.
 2. cd: change directory.
 3. rm: remove a file
-4. cat:
-5. mkdir:
-6. cp:
+4. cat: check contents of a file
+5. mkdir: creates directory. eg. mkdir srabani
+6. cp: copy. eg. cp /opt/splunk_training.txt /opt/srabani/
 7. tar: cvfz(compress verbose file zip)  xvfz(extract verbose file zip)
 eg. tar xvfz splunkforwarder-9.2.1-78803f08aabb-Linux-x86_64.tgz
-
-8. ifconfig:
-9. wget:
-10. init:
+8. ifconfig: you can see ip configuration. 
+9. wget: download file from internet.
+ wget -O splunk-9.2.1-78803f08aabb-Linux-x86_64.tgz "https://download.splunk.com/products/splunk/releases/9.2.1/linux/splunk-9.2.1-78803f08aabb-Linux-x86_64.tgz"
+10. init: init 0: shut down. init 6: restart
 11. pwd: present working directory
-12. history:
-13. whoami:
-15. ping:
-16. df:
-17. rmdir:
-18. clear:
-19. exit:
+12. history: list of used commands
+13. whoami: shows username
+15. ping: is used to check internet connection.
+16. df: check free disk space.
+17. rmdir: remove a directory.
+18. clear: clear the screen.
+19. exit: exit from one user.
 20. log out:
-21. sudo su:
+21. sudo su: superuser do
 
 change file ownership:
 chown -R root:root splunkforwarder
 
 vi editor commands:
+vi <file> -> creates file
+i -> insert mode
+esc ->command mode
+:wq -> save and quit
+:q ->quit
+shift g -> bottom of the file
+yy-> copy the line where the control is
+3/4yy -> copy 3/4 lines
+p-> paste line
+dd -> cut line
+/keyword -> search the keyword.
+2u -> undo 2 changes.
+
+%s/<keyword>/<new_keyword>/g
