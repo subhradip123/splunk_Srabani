@@ -1,0 +1,18 @@
+advance onboarding:
+
+aaa.txt
+bbb.txt
+Dinesh.txt
+
+ab.json
+zx.json
+
+eg:
+
+[monitor:///tmp/*.txt]
+index = test
+sourcetype = text_log
+
+[monitor:///tmp/*.json]
+index = test
+sourcetype = json_log
