@@ -31,7 +31,9 @@ SEDCMD-hide_ip = s/\d{3}\.\d{3}\.\d{1,3}\.(\d{1,3})/***.***.***.\1/g
 
 task:
 suppose your log:
-Ankith incoming call from +91 1234567890
+incoming from +1 1234567890
+incoming from +91 2345671234
 
-
-Ankith incoming call from +91 *******890
+we index it this way:
+incoming from +1 ********90
+incoming from +91 ********34
