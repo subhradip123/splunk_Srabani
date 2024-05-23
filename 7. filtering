@@ -1,0 +1,90 @@
+filtering: transforms.conf
+
+HF>>
+#cd/opt/splunk/etc/system/local
+
+vi transforms.conf
+
+[<transformation_name>]
+attributes=<value>
+
+then edit props.conf
+[<sourcetype_name>]
+TRANSFORMS-<class_name>=<transformation_name1>,<transformation_name2>,<transformation_name3>
+
+If we want to ingest only data related to Hyderabad.
+
+This is Ankith and he lives in Bangalore.
+This is SUbhradip and he lives in Kolkata.
+This is Nikhil and he lives in Hyderabad.
+
+vi transforms.conf
+[one]
+REGEX=.
+DEST_KEY=queue
+FORMAT=nullQueue
+
+[two]
+REGEX=(?i)Hyderabad
+DEST_KEY=queue
+FORMAT=indexQueue
+
+vi props.conf
+[txt_log]
+SHOULD_LINEMERGE = false
+SEDCMD-hidename = s/(?i)ankith/Nikhil/g
+SEDCMD-hide_ip = s/\d{3}\.\d{3}\.\d{1,3}\.(\d{1,3})/***.***.***.\1/g
+TRANSFORMS-filter_city=one,two
+
+IF we dont want to ingest data related to Hyderabad.
+
+vi transforms.conf
+[hyd]
+REGEX=(?i)Hyderabad
+DEST_KEY=queue
+FORMAT=nullQueue
+
+vi props.conf
+[txt_log]
+SHOULD_LINEMERGE = false
+SEDCMD-hidename = s/(?i)ankith/Nikhil/g
+SEDCMD-hide_ip = s/\d{3}\.\d{3}\.\d{1,3}\.(\d{1,3})/***.***.***.\1/g
+TRANSFORMS-filter_city=hyd
+
+
+field extraction:
+
+This is Nikhil, he logged in from 192.168.32.45 using port 22
+This is Ankith, he logged in from 192.168.56.45 using port 45
+This is Subhradip, he logged in from 192.168.32.57 using port 54
+
+vi transforms.conf
+
+[extract]
+REGEX=.*is\s+(\w+).*(\d{3}\.\d{3}\.\d{1,3}\.\d{1,3}).*port\s+(\d+)
+FORMAT=Name=$1 IP=$2 Port=$3
+DEST_KEY=_raw
+
+vi props.conf
+[txt_log]
+SHOULD_LINEMERGE = false
+SEDCMD-hidename = s/(?i)ankith/Nikhil/g
+SEDCMD-hide_ip = s/\d{3}\.\d{3}\.\d{1,3}\.(\d{1,3})/***.***.***.\1/g
+TRANSFORMS-filter_city=hyd
+TRANSFORMS-field=extract
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
