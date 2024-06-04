@@ -1,0 +1,41 @@
+The server which will act as deployment server, have to run this command
+# $Splunk_home/bin/splunk enable deploy-server
+
+Deployment clients:
+# $Splunk_home/bin/splunk set deploy-pool <ip of ds>:8089
+Eg. https://172.31.34.18:8089
+The settings are saved in #splunk_home/etc/system/local/deploymentcliet.conf
+
+To check all cllients:
+Now we can log into gui of ds->settings->forwarder management
+Note: We need to add atleast one deployement app to make all cliens visible in forwarder management.
+
+Deployment apps:
+# $Splunk_home/etc/deployment_apps
+All the apps we want to deploy will stay here.
+App directory structure:
+<app_name>/local/.conf files
+Eg.
+mkdir ufapp
+cd ufapp
+mkdir local
+cd local
+vi inputs.conf
+[monitor:///var/log/secure]
+index=main
+sourcetype=securelog
+
+Server-class:
+vi $Splunk_home/etc/system/local/serverclass.conf
+[serverClass:<serverclass_name>]
+whitelist.0=192.128.42.10
+whitelist.0=192.168.56.*
+blacklist.0=192.168.56.13
+blacklist.0=192.168.56.19
+
+[serverClass:<serverclass_name>:app:<app_name>]
+restartSplunkd = 1
+reatartSplunkWeb = 0
+
+push app:
+# $Splunk_home/bin/splunk reload deploy-server
