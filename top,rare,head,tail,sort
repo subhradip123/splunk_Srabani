@@ -1,0 +1,48 @@
+top:
+used to feching maximum occurance of a field value.
+.. | top <F.N1> <FN2>
+
+Ankit lives in Hyderabad.
+Anil lives in Mumbai.
+Ankit is 26 years old.
+Ankit loves to eat chiken.
+Anil is 25 yrs old.
+Nikhil lives in Bangalore.
+Subhradip lives in Kolkata.
+
+eg.
+index=_internal sourcetype="splunkd_ui_access" | top method
+
+by default top command returns top 10 values.
+
+.. | top <limt=number> <F.N1> <FN2>
+
+limit=0 returns all the values
+
+attributes:
+index=_internal sourcetype="splunkd_ui_access" | top method showcount=f showperc=f
+
+If we use showcount=f then count is not visible anymore.
+If we use showperc=f then count is not visible anymore.  
+
+
+rare:
+it is opposite of top command.
+
+head:
+it shows the 1st 10 values from a list.
+.. | head
+by default head returns 1st 10 values.
+eg.
+index=_internal sourcetype="splunkd_ui_access" | table bytes | dedup bytes | head 20
+
+tail:
+do the opposite of head.
+
+task:
+index=_internal sourcetype="splunkd_ui_access" | table status | dedup status
+from this list I need only the 3rd value.
+
+sort:
+.. | sort <field_name>  --> assending order
+.. | sort - <field_name> --> decending order
