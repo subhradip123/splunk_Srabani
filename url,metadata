@@ -1,0 +1,30 @@
+localhost:8000/en-us
+
+SPL- Splunk search processing language.
+
+Anything we write in the search box is a query.
+
+
+Meta data:
+host: Ip or the host name of the server where the data is generated.
+source: the actual path where the data generated.
+sourcetype: logical segragation.
+
+google chrome related data.
+
+download related data 
+
+browsing related data 
+
+your account related data 
+
+
+soaps
+
+baby
+
+body
+
+main is the default index of splunk.
+
+if the index start with "_" then it is an internal index of splunk.
