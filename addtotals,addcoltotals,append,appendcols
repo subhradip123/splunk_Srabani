@@ -1,0 +1,47 @@
+addcoltotals:
+add a additional row written summation of field values.
+
+.. | addcoltotals <field_name1> <field_name2>            [need a statictical table to use addcoltotals]
+
+eg.
+index=_internal sourcetype="splunkd_ui_access" | table method bytes status | dedup method bytes status | head | addcoltotals
+
+labelfield:
+index=_internal sourcetype="splunkd_ui_access" | table method bytes status | dedup method bytes status | head | addcoltotals labelfield=method
+
+index=_internal sourcetype="splunkd_ui_access" | table method bytes status | dedup method bytes status | head | addcoltotals labelfield=method label=summation
+
+
+addtotals:
+creat row-wise summation.
+
+... | addtotals <field_name1> <field_name2>
+
+eg.
+index=_internal sourcetype="splunkd_ui_access" | table method bytes status count| dedup method bytes status count | head | addtotals bytes count
+
+rename field "Total"
+index=_internal sourcetype="splunkd_ui_access" | table method bytes status count| dedup method bytes status count | head | addtotals bytes count fieldname=total_bytes_count
+
+
+append: we can join result from one query with onother query.
+query1 | append [| search query 2 ]
+eg.
+| makeresults 
+| eval "user"="Anil", "host"="Anil_pc" 
+| fields - _time 
+| append 
+    [| search index=_internal sourcetype="splunkd_ui_access" 
+    | table user host 
+    | dedup user host]
+	
+appendcols:
+query1 | append[| search query 2]
+eg.
+index=_internal sourcetype="splunkd_ui_access" 
+| table user host 
+| dedup user host 
+| appendcols 
+    [| search index=_internal sourcetype="splunkd" 
+    | table group name 
+    | dedup group name]
