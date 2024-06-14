@@ -1,0 +1,46 @@
+field extraction:
+There are two types of field extraction based on when we are extracting it.
+
+1. Indextime field extraction:
+If we extract fields before data get stored, then it is called indextime field extraction.
+It done from HF, IDX.
+
+
+2. Searchtime field extraction:It is done after data get stored.
+It is done on IDX, SH.
+
+a> Interactive field extraction(IFX)
+click on the arrow left side of every event--> event action dropdown --> extract fields --> select regular expression --> 
+select the portion you want to extract --> give it a name --> add extraction --> validation --> done
+
+b> regular expression(rex)
+
+This is Ankith.
+This is ..Ankith..
+This is \\Ankith.
+
+rex:
+.. | rex field=<field_name> ".....pre pattern..(?<new_field_name>...extracted pattern..)...post pattern..."
+
+\w=word/charecter
+\d=digit
+\s=space
+?=0or1 occurance
++=1 or more occurance
+.*=all
+\symbol=symbol
+\-=-
+
+cheatsheet:
+https://www.debuggex.com/cheatsheet/regex/pcre
+
+test expression:
+https://regex101.com/
+
+practice:
+https://regexone.com/
+
+eg.
+index=_internal sourcetype="splunkd_ui_access"
+| rex field=_raw ".*\(\w+\,\s+\w+\s+\w+\)\s+(?<browser>\w+\/\d+\.\d+\.\d+\.\d+).*"
+| rex field=uri_path "(?<basic_url>\/\w+\-\w+\/\w+\/\__\w+\/).*"
